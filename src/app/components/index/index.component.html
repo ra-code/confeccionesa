@@ -1,0 +1,224 @@
+<div class="container pt-4" style="">
+
+  <div class="row t-ligth">
+
+    <div class="col-12 col-md-6 col-lg-2 title-cat text-uppercase">
+      <span class="align-middle">categorias</span>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3 mb-2" *ngFor="let category of categories">
+          <button class="item-category w-100" mat-button><span class="text-uppercase">{{category.name}}</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- titulo -->
+  <div class="text-center m-4 t-extra-ligth">
+    <p class="t-extra-ligth h2">ÚLTIMOS AÑADIDOS</p>
+  </div>
+  <!-- /titulo -->
+  <div>
+    <div class="row">
+      <!-- card item -->
+
+      <!--<ngx-carousel [inputs]="carouselTile" (carouselLoad)="carouselTileLoad($event)">
+
+        <ngx-tile NgxCarouselItem *ngFor="let item of items">
+          <div *ngIf="i<4">
+          <div class="box-img d-flex justify-content-center">
+            <img class="img-fluid aa " src="{{this._global.baseAPIUrl}}uploads/{{item.images[0]}}" alt="">
+          </div>
+          <div class="item-regular-tile d-block py-2 px-1">
+            <div class="m-auto t-regular item-regular-tile-description">{{item.title}}</div>
+            <div class="m-auto t-regular item-regular-tile-price">{{item.price| currency:'BSF ':'code'}}</div>
+          </div>
+          </div>
+        </ngx-tile>
+
+        <button NgxCarouselPrev class='leftRs'>&lt;</button>
+        <button NgxCarouselNext class='rightRs'>&gt;</button>
+      </ngx-carousel>-->
+
+
+      <!--<div class="col-12 col-sm-6 col-lg-3 mb-3" *ngFor="let item of items;  let i=index">
+        <mat-card class="item-regular p-0" *ngIf="i<4">
+          <div class="box-img d-flex justify-content-center" [ngStyle]="{'background-image': 'url('+this._global.baseAPIUrl+'uploads/'+item.images[0]+')','background-repeat': 'no-repeat',
+    'background-size': 'cover'}">
+
+          </div>
+          <div class="item-regular-tile d-block py-2 px-1">
+            <div class="m-auto t-regular item-regular-tile-description">{{item.title}}</div>
+            <div class="m-auto t-regular item-regular-tile-price">{{item.price| currency:'BSF ':'code'}}</div>
+          </div>
+        </mat-card>
+      </div>-->
+
+
+
+      <ngu-carousel [inputs]="carouselTile" (initData)="initDataFn($event)" (carouselLoad)="carouselTileLoad($event)" class="w-100">
+
+        <ngu-tile NguCarouselItem *ngFor="let item of items">
+          <div class="box-img d-flex justify-content-center" [ngStyle]="{'background-image': 'url('+this._global.baseAPIUrl+'uploads/'+item.images[0]+')','background-repeat': 'no-repeat',
+    'background-size': 'cover','background-position': 'center' }">
+
+          </div>
+          <div class="item-regular-tile d-block py-2 px-1">
+            <div class="m-auto t-regular item-regular-tile-description" (click)="editElement(item.id_item)">{{item.title}}</div>
+            <div class="m-auto t-regular item-regular-tile-price">{{item.price| currency:'BSF ':'code'}}</div>
+          </div>
+        </ngu-tile>
+
+        <button NguCarouselPrev class='leftRs'>&lt;</button>
+        <button NguCarouselNext class='rightRs'>&gt;</button>
+      </ngu-carousel>
+
+
+
+
+      <!-- /card item -->
+
+    </div>
+  </div>
+  <!-- titulo -->
+  <div class="text-center m-4 t-extra-ligth">
+    <p class="t-extra-ligth h2">PRODUCTOS MAS VENDIDO</p>
+  </div>
+  <!-- /titulo -->
+  <div>
+    <div class="row">
+      <!-- card item -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <mat-card class="item-regular p-0">
+          <div class="box-img">
+
+          </div>
+          <div class="item-regular-tile d-block py-2 px-1">
+            <div class="m-auto t-regular item-regular-tile-description">Paquete número 1 Unisex Paquete número 1 Unisex</div>
+            <div class="m-auto t-regular item-regular-tile-price">650.000 Bsf</div>
+          </div>
+        </mat-card>
+      </div>
+      <!-- /card item -->
+
+    </div>
+  </div>
+  <!-- titulo -->
+  <div class="text-center m-4 t-extra-ligth">
+    <p class="t-extra-ligth h2">COMPRAR ES FACIL</p>
+  </div>
+  <!-- /titulo -->
+  <div class="banner-1">
+    <!--<div class="row">
+      <div class="col">
+
+        <button mat-mini-fab>1</button>
+        <span>Añade productos a tu carrito de compras</span>
+
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>-->
+
+
+    <mat-horizontal-stepper class="stepper-index h-100">
+
+      <mat-step label="Añade productos a tu carrito de compras">
+        <div class="row ">
+          <div class="col-6 m-auto text-center d-flex align-items-center" style="height:248px; ">
+            <span class="w-100"><mat-icon >add_shopping_cart</mat-icon></span>
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </mat-step>
+
+      <mat-step label="Regístrate gratis y cancela tu compra">
+        <div class="row ">
+          <div class="col-6 m-auto text-center d-flex align-items-center" style="height:248px; ">
+            <span class="w-100"><mat-icon >payment</mat-icon></span>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step label="Recibe tu producto">
+        <div class="row ">
+          <div class="col-6 m-auto text-center d-flex align-items-center" style="height:248px; ">
+            <span class="w-100"><mat-icon >receipt</mat-icon></span>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+
+  </div>
+  <!-- titulo -->
+  <div class="text-center m-4 t-extra-ligth">
+    <p class="t-extra-ligth h2">OFERTAS DEL MES</p>
+  </div>
+  <!-- /titulo -->
+  <div class="row">
+    <!-- card item offer -->
+    <div class="col col-sm-6 col-lg-3">
+      <mat-card class="item-regular p-0">
+        <div class="box-img">
+          <div class="flag-offer"><span class="desc-text">-30%</span></div>
+
+        </div>
+        <div class="item-offer-tile d-block py-2 px-1">
+          <div class="m-auto t-regular item-offer-tile-description">Paquete número 1 Unisex Paquete número 1 Unisex</div>
+          <div class="m-auto t-regular item-offer-tile-price">650.000 Bsf</div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- /card item offer -->
+    <!-- card item offer -->
+    <div class="col col-sm-6 col-lg-3">
+      <mat-card class="item-regular p-0">
+        <div class="box-img">
+          <div class="flag-offer"><span class="desc-text">-30%</span></div>
+
+        </div>
+        <div class="item-offer-tile d-block py-2 px-1">
+          <div class="m-auto t-regular item-offer-tile-description">Paquete número 1 Unisex Paquete número 1 Unisex</div>
+          <div class="m-auto t-regular item-offer-tile-price">650.000 Bsf</div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- /card item offer -->
+    <!-- card item offer -->
+    <div class="col col-sm-6 col-lg-3">
+      <mat-card class="item-regular p-0">
+        <div class="box-img">
+          <div class="flag-offer"><span class="desc-text">-30%</span></div>
+
+        </div>
+        <div class="item-offer-tile d-block py-2 px-1">
+          <div class="m-auto t-regular item-offer-tile-description">Paquete número 1 Unisex Paquete número 1 Unisex</div>
+          <div class="m-auto t-regular item-offer-tile-price">650.000 Bsf</div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- /card item offer -->
+    <!-- card item offer -->
+    <div class="col col-sm-6 col-lg-3">
+      <mat-card class="item-regular p-0">
+        <div class="box-img">
+          <div class="flag-offer"><span class="desc-text">-30%</span></div>
+
+        </div>
+        <div class="item-offer-tile d-block py-2 px-1">
+          <div class="m-auto t-regular item-offer-tile-description">Paquete número 1 Unisex Paquete número 1 Unisex</div>
+          <div class="m-auto t-regular item-offer-tile-price">650.000 Bsf</div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- /card item offer -->
+  </div>
+</div>

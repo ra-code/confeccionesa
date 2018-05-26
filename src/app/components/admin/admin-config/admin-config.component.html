@@ -1,0 +1,30 @@
+<app-admin-header-section [pageTitle]="pageTitle" [pageSubtitle]="pageSubtitle"></app-admin-header-section>
+<form [formGroup]="configForm">
+  <div class="row">
+    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-icon mat-card-avatar>monetization_on </mat-icon>
+          <mat-card-title>
+            Cargos web
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="w-100">
+            <input type="number" matInput placeholder="Porcentaje a cobrar" value="{{configs.webCharges}}" formControlName="webCharges" [(ngModel)]="configs.webCharges">
+          </mat-form-field>
+          <div class="indicator">
+            {{configs.webCharges}}%
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-12">
+      <mat-divider class="my-3"></mat-divider>
+      <div class="buttons d-flex justify-content-end">
+        <button mat-button class="mr-2" [routerLink]="(['/admin'])">Salir</button>
+        <button mat-raised-button color="primary" (click)="saveConfig(configForm.value)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</form>

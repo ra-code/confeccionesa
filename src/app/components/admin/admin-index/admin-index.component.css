@@ -1,0 +1,42 @@
+
+.sidenav{
+    width:290px;
+}
+.btn-sidenav{
+    width: 40px;
+    
+}
+.user-box{
+    height: 200px;
+    background-color: #3f51b5;
+}
+
+.menu-items button{
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color:#F7F7F7; 
+}
+.menu-group > button{
+    background-color:rgb(240, 240, 240);
+}
+.profile{
+    border:5px solid whitesmoke;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: auto;
+    background-color: white;
+}
+.credentials{
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 16px;
+
+}
+.role-txt{
+    font-size: 12px;
+    font-weight: 400;
+}

@@ -1,0 +1,57 @@
+<app-admin-header-section [pageTitle]="pageTitle" [pageSubtitle]="pageSubtitle"></app-admin-header-section>
+<mat-card class="mb-3 tab-full">
+    <!--<mat-card-header>
+        <mat-card-title>
+            <h4>Imagenes</h4>
+        </mat-card-title>
+    </mat-card-header>-->
+    <mat-card-content>
+        <mat-table #table [dataSource]="dataSource">
+
+            <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="code" style="">
+                <mat-header-cell *matHeaderCellDef style=""> Código </mat-header-cell>
+                <mat-cell *matCellDef="let element" style=""> {{element.code}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.price| currency:'BSF ':'code'}} </mat-cell>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="id_category">
+                <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id_category}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="warn" value="{{element.id_item}}" (click)="deleteItem(element.id_item)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" value="{{element.id_item}}" (click)="editElement(element.id_item)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
+                  </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

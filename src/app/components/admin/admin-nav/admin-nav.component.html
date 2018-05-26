@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  Welcome to dashboard
+  <div class="d-flex ml-auto">
+    <button  mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>close</mat-icon>
+        <span>Salir</span>
+      </button>
+
+    </mat-menu>
+  </div>
+
+</mat-toolbar>

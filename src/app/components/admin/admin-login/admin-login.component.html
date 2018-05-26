@@ -1,0 +1,40 @@
+<div class="w-100 h-100">
+  <div class="container-fluid h-100">
+    <div class="row bg">
+      <div class="m-auto col-12 col-sm-6 col-lg-4 col-xl-3">
+
+        <mat-card>
+          <mat-toolbar color="primary">
+            <span class="text-center w-100">Iniciar sesion</span>
+          </mat-toolbar>
+          <mat-card-content class="mt-2 mx-3 ">
+            <form [formGroup]="loginAdminForm">
+              <div class="row d-flex justify-content-center">
+                <mat-form-field class="w-100">
+                  <input matInput type="text" placeholder="Usuario" formControlName='userName' required>
+                </mat-form-field>
+              </div>
+
+              <div class="row d-flex justify-content-center">
+                <mat-form-field class="w-100">
+                  <input matInput type="password" placeholder="Contaseña" formControlName='password' required>
+                </mat-form-field>
+              </div>
+              
+              <div class="row d-flex mt-2 flex-row-reverse">
+                
+                <button (click)="loginAdmin(loginAdminForm.value)" [disabled]="loginAdminForm.status=='INVALID'" mat-raised-button color="primary">Iniciar sesión</button>
+                <button [routerLink]="['']" class="mr-2" mat-button color="primary">Salir</button>
+              </div>
+            </form>
+
+
+
+          </mat-card-content>
+          
+        </mat-card>
+        <!--<p *ngIf="error" class="text-center w-100" >{{error}}</p>-->
+      </div>
+    </div>
+  </div>
+</div>

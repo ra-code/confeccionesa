@@ -1,0 +1,47 @@
+<nav class="navbar navbar-light nav-1 shadow_plain">
+  <div class="container d-flex align-items-end">
+    <a class="navbar-brand" href="#">
+      <img src="" width="30" height="30" alt="">
+    </a>
+    <div class="w-auto ml-auto">
+      <span class="t-semi-bold text-gray d-inline-block text-truncate" style="max-width: 150px;padding-top:0;" *ngIf="token">Hola {{token.name}}!</span>
+    </div>
+    <div style="">
+      
+      <span class="t-semi-bold text-gray" *ngIf="!token">Hola, Invitado!</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openDialog()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      
+
+      <mat-menu #menu="matMenu">
+        <div class="no_logged" *ngIf="!token">
+          <button mat-menu-item>
+            <mat-icon>keyboard_tab</mat-icon>
+            <span>Inicia Sesión</span>        
+          </button>
+
+          <button mat-menu-item (click)="register()">
+            <mat-icon>add box</mat-icon>
+            <span>Crea tu cuenta</span>
+          </button>
+        </div>
+        <div class="logged" *ngIf="token">
+          <button mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>Mi cuenta</span>        
+          </button>
+
+          <button mat-menu-item (click)="signOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Salir</span>
+          </button>
+        </div>
+      </mat-menu>
+
+    </div>
+  </div>
+</nav>

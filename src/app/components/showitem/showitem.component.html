@@ -1,0 +1,75 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-2">
+      <mat-grid-list cols="2" rowHeight="2:2" class="w-100">
+        <mat-grid-tile class="" (click)="selectImage(image)" *ngFor="let image of item.images" style="border:1px solid whitesmoke" [ngStyle]="{'background-image': 'url('+this._global.baseAPIUrl+'uploads/'+image+')','background-repeat': 'no-repeat',
+    'background-size': 'cover','background-position': 'center' }">
+        
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      <!--<div class="row">
+        <div class="col-6 mini-img">
+
+        </div>
+      </div>-->
+    </div>
+    <div class="col-5">
+      <!--<div class="img-prin" [ngStyle]="{'background-image': 'url('+this.imageSelected+')','background-repeat': 'no-repeat',
+    'background-size': 'cover','background-position': 'center' }">
+
+      </div>-->
+      <div class="img-prin d-flex align-items-center">
+        <img class="img-fluid img-principal m-auto" src="{{imageSelected}}" alt="">
+      </div>
+    </div>
+    <div class="col-5">
+      <mat-card class="bot-info">
+        <div>
+          <p class=" text-capitalize"><span class="item-title t-extra-ligth">{{item.title}}</span><br><span class="item-price t-semi-bold">{{item.price|currency:'BSF ':false:'1.2-4'}}</span></p>
+        </div>
+        <div class="">
+          <p class="t-ligth subtitle-box-details mb-0">DISPONIBLES <span class="subtitle-box-details-2"> <br> {{ item.cant}}</span></p>
+        </div>
+        <div class="">
+          <p class="t-ligth subtitle-box-details">PEDIDO</p>
+          <div class="d-inline-flex">
+            <button (click)="resCant()" mat-icon-button class="button-cant">-
+                <!--<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>-->
+            </button>
+            <div class="box-cant mx-2 d-inline-flex ">
+              <span class="w-100 text-center mt-2">{{cant}}</span>
+            </div>
+            <button (click)="sumaCant()" mat-icon-button class="button-cant mr-4">+
+                <!--<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>-->
+            </button>
+
+
+            <!--<button mat-icon-button class="">
+                <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+              </button>
+              <div class="box-cant mr-4 d-inline-flex">
+                1
+              </div>
+                
+              <button mat-icon-button class="">
+                <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+              </button>-->
+
+
+            <button mat-raised-button [disabled]="cant<1" (click)="addToCart(item.id_item)" style="color:gray"><mat-icon >add_shopping_cart</mat-icon>Añadir al carrito</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="text-center m-4 t-extra-ligth w-100">
+      <p class="t-extra-ligth h2">DESCRIPCIÓN DEL ARTÍCULO</p>
+    </div>
+    <div [froalaView]="item.description" class="w-100 p-5 box-description">
+
+    </div>
+  </div>
+</div>

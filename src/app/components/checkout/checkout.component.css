@@ -1,0 +1,23 @@
+.chck-item{
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+.chck-title{
+    font-size: 1.4rem;
+}
+.chck-res-cant{
+    font-size: 0.8rem;
+    color:gray;
+}
+.chck-price{
+    font-size: 1.1rem;
+    color: orangered;
+}
+.chck_img_box{
+    margin:0 10px 0 10px;
+    
+    height: 120px;
+}
+.chck_totals_text mat-toolbar{
+    font-size: 15px;
+}

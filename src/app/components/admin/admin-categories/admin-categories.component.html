@@ -1,0 +1,63 @@
+<app-admin-header-section [pageTitle]="pageTitle" [pageSubtitle]="pageSubtitle"></app-admin-header-section>
+
+<div class="row">
+  <div class="col-12 col-xl-8  m-auto">
+    <div class="row">
+      <div class="col-12 col-lg-6 mb-3">
+        <mat-card>
+          <mat-card-title>
+            Añadir categoría
+          </mat-card-title>
+          <mat-card-content>
+            <mat-form-field class="w-100">
+              <input matInput name="name" [(ngModel)]="name" placeholder="Nombre" value="">
+            </mat-form-field>
+            <button class="w-100" (click)="newCategorie($event)" mat-raised-button color="primary">Añadir</button>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-12 col-lg-6">
+        <mat-card>
+          <mat-card-title>
+            Lista de categorías
+          </mat-card-title>
+          <mat-card-content>
+
+
+            <mat-table #table [(dataSource)]="dataSource">
+
+
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="warn" value="{{element._id}}" (click)="deleteCategorie(element._id)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+            </mat-paginator>
+
+
+
+
+
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+
+</div>

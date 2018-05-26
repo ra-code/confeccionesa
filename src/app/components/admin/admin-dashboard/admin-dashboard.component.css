@@ -1,0 +1,38 @@
+.container-items mat-card{
+    margin-bottom: 17px;
+}
+.icon-item{
+    font-size: 50px;
+    width:auto;
+    height: auto;
+}  
+.number-item{   
+    width: 34px;
+    height: 67px; 
+    font-size: 60px;    
+    margin:auto;
+    margin-top:-13px;
+} 
+.phara-item{
+    
+}
+.a {
+    background-color: #F75657;
+    color:white;
+    height: 130px;
+}
+.b {
+    background-color: #6DC2EB;
+    color:white;
+    height: 130px;
+}
+.c {
+    background-color: #F8BA4B;
+    color:white;
+    height: 130px;
+}
+.d {
+    background-color: #7CC250;
+    color:white;
+    height: 130px;
+}

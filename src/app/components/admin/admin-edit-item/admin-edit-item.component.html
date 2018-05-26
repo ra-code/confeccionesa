@@ -1,0 +1,279 @@
+<app-admin-header-section [pageTitle]="pageTitle" [pageSubtitle]="pageSubtitle"></app-admin-header-section>
+<form (ngSubmit)="uploadAll(form)" #form="ngForm">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Imágenes</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-2 col-xs-2 col-sm-3  col-xl-2" *ngFor="let image of images">
+          <div class="box-edit-image img-thumbnail d-flex align-items-center">
+            <img class="img-fluid m-auto"  style="max-height: 123px;" src="{{domain}}/uploads/{{image}}" alt="">
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="mb-3">
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Añadir imágenes</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!--<input type="file" name="image_1"  [(ngModel)]="image_1" accept="image/jpeg,image/png" (change)="onChange($event)">
+      <input type="file" name="image_2"  [(ngModel)]="image_2" accept="image/jpeg,image/png" (change)="onChange_2($event)">-->
+
+
+      <style>
+        .my-drop-zone {
+          border: dotted 3px lightgray;
+          border-radius: 10px;
+          width: 100%;
+          height: 230px;
+          color: #3f51b5;
+          font-weight: 500;
+          font-size: 20px;
+          text-align: center;
+        }
+
+        .nv-file-over {
+          border: dotted 3px red;
+        }
+        /* Default class applied to drop zones on over */
+
+        .another-file-over-class {
+          border: dotted 3px green;
+        }
+
+        html,
+        body {
+          height: 100%;
+        }
+      </style>
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class=" d-none d-md-block">
+              <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                class=" my-drop-zone">
+                <p class="pt-5 mt-5">
+                  Arrastra las fotos hasta aquí
+                </p>
+
+              </div>
+              <p class="text-center pt-4 pb-2 h4" style="color:gray"><strong>O</strong></p>
+            </div>
+            <div class="" style="height:38px;background-color:#3f51b5;border-radius: 3px;cursor:pointer" class="m-auto">
+              <input type="file" class="custom-file-input btn btn-primary" ng2FileSelect [uploader]="uploader" multiple />
+              <div class="txt-input-file">
+                <mat-icon class="">file_upload</mat-icon>
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div class="col-md-9" style="margin-bottom: 40px">
+            <p>Número de achivos: {{ uploader?.queue?.length }}</p>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="50%">Nombre</th>
+                  <th>Tamaño</th>
+
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                  <td><strong>{{ item?.file?.name }}</strong></td>
+                  <td *ngIf="uploader.isHTML5">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                  <td *ngIf="uploader.isHTML5">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                  </td>
+                  <td nowrap>
+                    <button mat-icon-button color="warn">
+                      <mat-icon (click)="item.remove()" aria-label="Eliminar">delete</mat-icon>
+                    </button>
+
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div>
+
+              <!--<button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+              <button type="button" class="btn btn-warning btn-s" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+              <button type="button" class="btn btn-danger btn-s" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>-->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </mat-card-content>
+  </mat-card>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <mat-card class="mb-3">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Información general</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+
+            <div class="col-12">
+              <mat-form-field class="w-100">
+                <input matInput type="text" placeholder="Título" name="title" [(ngModel)]="title" required />
+                <button mat-button *ngIf="title" matSuffix mat-icon-button aria-label="Clear" (click)="title=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100">
+                <input matInput type="text" placeholder="Código" name="code" [(ngModel)]="code" />
+                <button mat-button *ngIf="code" matSuffix mat-icon-button aria-label="Clear" (click)="code=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100">
+                <mat-select placeholder="Categoría" name="category" [(ngModel)]="category" required>
+                  <mat-option *ngFor="let categorie of categories" [value]="categorie.name" (click)="fillCategorie(categorie._id)">
+                    {{ categorie.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+
+
+
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100">
+                <input matInput type="number" placeholder="Precio" name="price" [(ngModel)]="price" required />
+                <button mat-button *ngIf="price" matSuffix mat-icon-button aria-label="Clear" (click)="price=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6">
+
+              <mat-form-field class="w-100">
+                <input matInput type="number" placeholder="Cantidad" name="cant" [(ngModel)]="cant" required/>
+                <button mat-button *ngIf="cant" matSuffix mat-icon-button aria-label="Clear" (click)="cant=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-card class="mb-3 resumen" style="background-color:#3f51b5;color:white">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Resumen</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          <p class="">
+            Titulo: {{title}}
+          </p>
+          <p class="">
+            Código: {{code}}
+          </p>
+          <p class="">
+            Categoría: {{category}}
+          </p>
+          <p class="">
+            Precio: {{price | currency:'BSF':false:'1.2-4'}}
+          </p>
+          <p class="">
+            Disponibles: {{cant}}
+          </p>
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+    <div class="col-12">
+      <mat-card class="mb-3">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Descripción del articulo</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div [froalaEditor]='options' [(froalaModel)]="description"></div>
+
+          <!--<mat-form-field class="w-100">
+            
+            <textarea name="description" [(ngModel)]="description" matInput placeholder="Descripcion"></textarea>
+          </mat-form-field>
+          <div [froalaEditor]>Hello, Froala!</div>-->
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+    <div class="col-12">
+      <mat-card class="mb-3">
+
+        <!--<div *ngIf="uploader.progress=='100'"> fin</div>-->
+
+        <!--<div class="progress" style="">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        </div>-->
+
+        <div class="d-flex">
+          <button class="ml-auto" mat-button>Cancelar</button>
+
+
+
+          <button class="ml-2" mat-raised-button color='primary' type='button' type="submit" [disabled]="!uploader.getNotUploadedItems().length || form.valid===false">Subir</button>
+        </div>
+        <div class="mt-3" *ngIf="uploader.progress">
+          <mat-progress-bar [color]="primary" [mode]="determinate" [value]="uploader.progress + '%'" [ngStyle]="{ 'width': uploader.progress + '%' }">
+          </mat-progress-bar>
+        </div>
+      </mat-card>
+
+    </div>
+  </div>
+</form>

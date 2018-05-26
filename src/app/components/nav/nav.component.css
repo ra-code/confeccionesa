@@ -1,0 +1,8 @@
+.nav-1{
+    min-height:88px;
+    background-color: whitesmoke;
+    z-index:1;
+}
+/deep/.mat-dialog-container  {
+     
+}

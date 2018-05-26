@@ -1,0 +1,110 @@
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js">
+console.log('hola')
+  Mercadopago.setPublishableKey("TEST-b3d5b663-664a-4e8f-b759-de5d7c12ef8f");
+  var a = Mercadopago.getIdentificationTypes();</script>
+
+<app-nav></app-nav>
+<div class="container pt-4">
+  <mat-toolbar class="primary text-white shadow_plain">CheckOut <span class="ml-auto">Tienes {{items.length}} artículo(s)</span></mat-toolbar>
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-5">
+      Descripcion
+    </div>
+    <div class="col-2">
+      Precio unitario
+    </div>
+    <div class="col-1">
+      <span class="text-center">Cantidad</span>
+    </div>
+    <div class="col-2">
+      Total
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngFor="let item of items" class="chck-item py-2 my-1">
+    <div class="row">
+      <div class="col-2">
+        <div class="chck_img_box img-thumbnail" [ngStyle]="{'background-image': 'url('+api+'uploads/'+item.images[0]+')','background-repeat': 'no-repeat',
+    'background-size': 'cover','background-position': 'center' }">
+
+        </div>
+        <!--<img src="{{api}}uploads/{{item.images[0]}}" style="max-height:120px" alt="" class="w-100 img-thumbnail p-4 img-fluid chck-img">-->
+      </div>
+      <div class="col-5">
+        <span class="chck-title t-extra-ligth"><a href="/art/{{item.id}}">{{item.title}}</a></span><br>
+        <span *ngIf="item.res_cant==1" class="chck-res-cant t-regular"> Sólo queda 1 artículo disponible - Ordenalo pronto</span>
+        <span *ngIf="item.res_cant<=10 && item.res_cant>1" class="chck-res-cant t-regular"> Sólo quedan {{item.res_cant}} artículos disponibles - Ordena pronto</span>
+        <span *ngIf="item.res_cant>10 " class="chck-res-cant t-regular"> Quedan {{item.res_cant}} artículos disponibles</span>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <div>
+          <span class="chck-price">{{item.price| currency:'Bs.F ':'code'}}<br></span>
+          <span class="chck-price">{{item.price/1000| currency:'Bs.S ':'code'}}</span>
+        </div>
+
+      </div>
+      <div class="col-1 d-flex align-items-center">
+
+        <p class="w-100 text-center">{{item.cant}}</p>
+
+
+
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <div>
+          <span class="chck-price">{{item.cant*item.price|currency:'Bs.F ':'code'}}</span><br>
+          <span class="chck-price">{{(item.cant*item.price)/1000|currency:'Bs.S ':'code'}}</span>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="chck_totals_text">
+
+
+    <mat-toolbar>
+      <div class="ml-auto col-1 ">
+        SUB-TOTAL
+      </div>
+      <div class=" col-3 text-right">
+        <span class="chck_total">{{chck_subtotal| currency:'Bs.F ' :'code'}}</span>
+      </div>
+    </mat-toolbar>
+    <mat-toolbar>
+      <div class="ml-auto col-1">
+        CARGOS WEB (2%)
+      </div>
+      <div class=" col-3 text-right">
+        <span class="chck_total">{{chck_cargos_web| currency:'Bs.F ' :'code'}}</span>
+      </div>
+    </mat-toolbar>
+    <mat-toolbar>
+      <div class="ml-auto col-1">
+        IVA (12%)
+      </div>
+      <div class=" col-3 text-right">
+        <span class="chck_total">{{chck_iva| currency:'Bs.F ' :'code'}}</span>
+      </div>
+    </mat-toolbar>
+
+    <mat-toolbar>
+      <div class="ml-auto col-1">
+        TOTAL
+      </div>
+      <div class=" col-3 text-right">
+        <span class="chck_total">{{chck_total| currency:'Bs.F ' :'code'}}</span>
+      </div>
+    </mat-toolbar>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+    <button mat-button routerLink="/" class="text-primary">Seguir comprando</button>
+    <button mat-raised-button class="primary text-white" (click)="proceedToPay()">Finalizar pedido</button>
+  </div>
+</div>
+<div [innerHTML]="voucher"></div>
+
+
+
